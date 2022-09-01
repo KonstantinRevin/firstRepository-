@@ -4,8 +4,7 @@ body{
     font-size: 18px;
     font-weight: 400;
 
-    position: relative; 
-    z-index: 2;
+    
     
 }
 
@@ -19,9 +18,7 @@ body{
     margin: 0 auto;   
     padding-top: 20px;
 }
-html{
-    overflow: hidden;
-}
+
 
 /* nav start */
 

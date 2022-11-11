@@ -80,6 +80,7 @@ $color-secondary: #6188ff;
 body{
     @include roboto;
 
+    padding-top: $base * 20;
     color: #8d968d;
    
 }
@@ -266,16 +267,17 @@ h5{
     justify-content: center;
     
 
-    &__item{
+    .swiper-pagination-bullet{
         width: $base * 2;
         height: $base * 2;
-        background-color: #d1d6e3;
+        // background-color: #d1d6e3;
         border-radius: 100%;
         transition: $transition;
         cursor: pointer;
+        padding-inline-start: 0px !important;
 
-        &--active{
-            background-color: #5283ff;
+        &-active{
+            // background-color: #5283ff;
         }
         & + &{
             margin-left: $base * 3;
@@ -309,7 +311,36 @@ h5{
 
 // === HEADER ===
 .section-header{
-    position: relative;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    background-color: #fff;
+
+    ::before {
+        position: absolute;
+        top: 80%; // 288string in css
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        // width: 100vw;
+        // height: 100vh;
+        content: '';
+        // background-color: rgba(0, 0, 0, 0.02);
+     
+    }
+
+    &--active-nav{
+        ::before{
+            display: block;
+        }
+
+        .main-navigation__inner-wrap{
+            display: flex !important;
+        }
+    }
 }
 
 .main-navigation{
@@ -328,7 +359,7 @@ h5{
                 display: none;
                 position: absolute;
                 z-index: 10;
-                top: 100%;
+                top: 80%;
                 right: 0;
                 left: 0;
                 margin-left: 0;
@@ -483,7 +514,10 @@ h5{
 .section-hero-image {
     position: relative;
     padding: 0;
-    // background-color: #f4f7ff;
+   
+    .swiper-pagination-bullets{
+        padding-inline-start: 0; //debagging
+    }
 
     .dots{
         position: absolute;
@@ -496,6 +530,8 @@ h5{
 .slider-hero-image {
     @include list-null();
 
+    height: $base * 140;
+    
     &__item {
         height: $base * 140;
         text-align: center;
@@ -823,26 +859,35 @@ h5{
         font-weight: $fw-medium;
     }
 }
-.slider-wrapper{
+
+.slider-blog{
     position: relative;
     margin-bottom:  $base*25;
+}
+
+.slider-blog-container{
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #d8e3fe;
+    box-shadow: 0 $base*3 $base*12 #c2c2faa3;
+    overflow: hidden;
 
     @media (max-width: $breakpoint-md-max) {
         margin-bottom: $base * 15;  
     }
 }
 
-.slider-blog{
+
+.slider-blog-wrapper{
     @include list-null();
 
-    background-color: #fff;
-    border: 1px solid #d8e3fe;
-    box-shadow: 0 $base*3 $base*12 #c2c2faa3;
-
+    display: flex;
 
     &__item{
         display: flex;
+        min-width: 100%;
         justify-content: space-between;
+        box-sizing: border-box;
         padding: $base*16 $base*8;
 
         &-gallery{
@@ -990,7 +1035,7 @@ h5{
 
 .btn-blog {
     position: absolute;
-    top: 50%;
+    
     display: block;
     width: $base * 10;
     height: $base * 10;
@@ -998,12 +1043,14 @@ h5{
     
     &--prev {
         right: 100%;
+        top: 50%;
         margin-right: $base * 16;
         transform: translateY(-50%);
     }
 
     &--next {
         left: 100%;
+        top: 45%;
         margin-left: $base * 16;
         transform: rotate(180deg);
     }
@@ -1054,7 +1101,7 @@ h5{
     @include list-null();
 
     margin-bottom: $base*20;
-
+    
     &__item{
         position: relative;
         padding: $base*10 $base*17 $base*15;
@@ -1120,7 +1167,7 @@ h5{
                 }
 
                 &-text{
-                    font-weight: $fw-bold;
+                    // font-weight: $fw-bold;
                     color: #727272;
                 }
             }
